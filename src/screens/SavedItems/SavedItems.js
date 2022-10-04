@@ -73,14 +73,15 @@ navigation.navigate('QuestionDetail',{id:item.hubId._id})
 }>
       <CustomPostCard
       cardtype={'Save'}
-      username={item.hubId.hubIduserName}
-      // userimage={item.hubId.userImage}
-      // postedtime={item.hubId.TimePosted}
-      // posttype={item.hubId.PostType}
-      // postdesc={item.hubId.Title}
+      username={item.hubId.userName}
+      userimage={item.hubId.userImage}
+      postedtime={item.hubId.TimePosted}
+      posttype={item.hubId.PostType}
+      postdesc={item.hubId.Title}
+      postthumbnail={item.hubId.thumbnail}
       //reason={reason}
-      //hashtags={hashtags}
-      //savedBy={item.SavedBy[0]}
+      hashtags={"#"+item.hubId.HashtagHub}
+      savedBy={item.SavedBy}
       hubpostid={item._id}
       getfunction={()=>HomePosts()}
     />

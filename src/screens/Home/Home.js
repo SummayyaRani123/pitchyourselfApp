@@ -372,8 +372,8 @@ item.LikedBy.find(item => item === saveuserid) === saveuserid ?
           </View>
           <View style={{
             flexDirection: "row", justifyContent: 'space-between',
-            marginRight: 20
-            //backgroundColor:'yellow'
+            marginRight: 20,width:wp(50),
+            backgroundColor:'yellow'
           }}>
             <FlatList
               data={item.userSocialLinks}

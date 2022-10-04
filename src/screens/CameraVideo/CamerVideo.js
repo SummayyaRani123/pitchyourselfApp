@@ -147,7 +147,7 @@ const CameraVideo = ({ navigation, route }) => {
               }
             />
             <IconButton
-              icon={require('../../assets/Camera/pluscircle.png')}
+              icon={require('../../assets/Camera/checkicon.png')}
               color={Colors.Appthemecolor}
               size={30}
               onPress={() =>

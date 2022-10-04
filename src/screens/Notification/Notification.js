@@ -118,21 +118,21 @@ const Notification = ({ navigation }) => {
                     <FlatList
                         data={notification}
                         renderItem={({ item, index, separators }) => (
-<TouchableOpacity onPress={()=> navigation.navigate('Jobs',{item:item.name})}>
+
                             <View style={styles.card}>
                                 
                         <View style={{ flexDirection: "row", justifyContent: 'space-around', 
                         alignItems: 'center',marginBottom:20 }}>
                             <View style={{}}>
                                 <Image
-                                source={require('../../assets/Notification/person.png')}
+                                source={{uri: item.toImg}}
                                     style={styles.userimage}
                                     resizeMode='contain'
                                 />
                             </View>
                             <View>
                                 <Text style={{ fontSize: 15, color: '#1B1B1B',
-                                 fontWeight: '700' }}>{item.from}
+                                 fontWeight: '700' }}>{item.toName}
                                 </Text>
                                 <Text style={[styles.recomend,
                                      { color: '#7A8FA6' }]}>
@@ -147,7 +147,7 @@ const Notification = ({ navigation }) => {
                      
 
                             </View>
-                            </TouchableOpacity>
+                   
                         )}
                         //keyExtractor={item => item.id}
                         keyExtractor={(item, index) => index.toString()}

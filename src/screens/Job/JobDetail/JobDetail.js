@@ -174,7 +174,7 @@ const JobDetail = ({ navigation, route }) => {
   const Applyjob = async () => {
     var user = await AsyncStorage.getItem('Userid')
     console.log("userid:", user,hubid)
-
+    var currdate= new Date().getDate() + '-' + new Date().getMonth() + 1 + '-' + new Date().getFullYear();
     axios({
       method: 'POST',
       url: BASE_URL + 'user/apply-for-job',
@@ -183,11 +183,12 @@ const JobDetail = ({ navigation, route }) => {
         hubId: hubid,
         video: video,
         thumbnail: thumbnails,
-        AppliedDate: '22-09-22'
+        AppliedDate: currdate
       },
     })
       .then(async function (response) {
         console.log("response", JSON.stringify(response.data))
+        ApplyNotification(response.data.HubUserId)
         //setModalVisible(true)
       })
       .catch(function (error) {
@@ -201,8 +202,10 @@ const JobDetail = ({ navigation, route }) => {
 
     ////////////////////Apply Notification//////////////
     const ApplyNotification = async (item) => {
-      console.log('here in notification:',item)
+
+
      var user = await AsyncStorage.getItem('Userid')
+     console.log('here in notification:',item,"uerid",user)
      var username = await AsyncStorage.getItem('Userdata')
      var currdate= new Date().getDate() + '-' + new Date().getMonth() + 1 + '-' + new Date().getFullYear();
      console.log("date:",currdate)
@@ -212,13 +215,13 @@ const JobDetail = ({ navigation, route }) => {
        data: {
          from: user,
          to: item,
-         msgContent:username+ "Applied on Your Job",
+         msgContent:"Applied on Your Job",
          dateTime:currdate
        },
      })
        .then(async function (response) {
          console.log("response", JSON.stringify(response.data))
-         HomePosts()
+         //HomePosts()
  
        })
        .catch(function (error) {

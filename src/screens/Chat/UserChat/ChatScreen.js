@@ -54,6 +54,7 @@ const[predata]=useState(route.params.item)
 
 ///////////////chatinput states/////////////
 const [messages, setMessages] = useState();
+const [arrivalMessage, setArrivalMessage] = useState();
 const [message, setMessage] = useState("");
 const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 const height = useSharedValue(70);
@@ -131,7 +132,7 @@ const [upward, setupward] = useState(false);
         })
           .then(async function (response) {
             console.log(" saved response", JSON.stringify(response.data))
-    
+            GetMessgae()
           })
           .catch(function (error) {
             if (error) {
@@ -191,7 +192,28 @@ const [upward, setupward] = useState(false);
             socket.current = io(BASE_URL);
             socket.current.emit("add-user", currentUser);
         }
-    }, [currentUser]);
+        if (socket.current) {
+          socket.current.on("msg-recieve", (msg) => {
+            console.log("recieve masgs:",msg)
+            setArrivalMessage({ fromSelf: false, message: msg });
+          });
+        }
+    }, [currentUser,messages]);
+
+    // useEffect(() => {
+    //   if (socket.current) {
+    //     socket.current.on("msg-recieve", (msg) => {
+    //       console.log("recieve masgs:",msg)
+    //       setArrivalMessage({ fromSelf: false, message: msg });
+    //     });
+    //   }
+    // }, [messages]);
+    useEffect(() => {
+      arrivalMessage && setMessages((prev) => [...prev, arrivalMessage]);
+    }, [arrivalMessage]);
+    // useEffect(() => {
+    //   flatListRef.current?.scrollIntoView({ behavior: "smooth" });
+    // }, [messages]);
     return (
 
         <SafeAreaView style={styles.container}>

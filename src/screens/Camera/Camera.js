@@ -66,10 +66,10 @@ const CustomCamera = ({ navigation,route }) => {
       onRecordingError: (error) => console.error(error),
     })
     setCapturevideostatus(true)
-    setTimeout(async () => {
-      await camera.current.stopRecording()
-      // navigation.goBack('here') // Stack Name
-    }, 3000);
+    // setTimeout(async () => {
+    //   await camera.current.stopRecording()
+    //   // navigation.goBack('here') // Stack Name
+    // }, 3000);
     dispatch(setVideoUrl(data));
     console.log("video path", data);
   }
@@ -214,7 +214,7 @@ const CustomCamera = ({ navigation,route }) => {
               />
               <IconButton
                 icon={require('../../assets/Camera/pluscircle.png')}
-                color={'white'}
+                color={'orange'}
                 size={30}
               />
 
@@ -250,7 +250,7 @@ const CustomCamera = ({ navigation,route }) => {
    
                       <TouchableOpacity onPress={() => StopRecording()}>
                       <Image
-                        source={require('../../assets/Camera/capture.png')}
+                        source={require('../../assets/Camera/stop.png')}
                         style={{ height: '50%', height: "90%" }}
                         resizeMode='contain'
                       />
@@ -279,7 +279,7 @@ onPress={()=> PauseRecording()}
               />
 :
 <IconButton
-icon={require('../../assets/Camera/pause.png')}
+icon={require('../../assets/Camera/play.png')}
 color={'orange'}
 size={30}
 onPress={()=> ResmeRecording()}
